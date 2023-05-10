@@ -30,7 +30,7 @@ class Robot(SimObject):
 
         # add lidar - added at the centre of the robot
         self.lidar = None
-        self.add_lidar()
+        #self.add_lidar()
 
 
     def update_object(self, dt):
@@ -103,6 +103,8 @@ class Robot(SimObject):
 
     # update velocities based on some function of sensor intensity
     def update_velocities(self):
-        new_left_velocity = self.light_sensors[0].get_intensity() / 10.0
-        new_right_velocity = self.light_sensors[1].get_intensity() / 10.0
+        # 100 is base velocity. We either add to it (excitatory) or subtract from it (inhibitory).
+        # 0.9 is the weight. It determines how much the sensor intensity affects the velocity
+        new_left_velocity = 100 + self.light_sensors[0].get_intensity() * 0.9
+        new_right_velocity = 100 + self.light_sensors[1].get_intensity() * 0.9
         self.set_wheel_velocities(new_left_velocity, new_right_velocity)

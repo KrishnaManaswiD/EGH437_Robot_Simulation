@@ -13,7 +13,8 @@ def run():
     # groups - 0 drawn first, 10 drawn last
     groups = []
     for i in range(10):
-        groups.append(pyglet.graphics.OrderedGroup(i))
+        #groups.append(pyglet.graphics.OrderedGroup(i))  # used in older version
+        groups.append(pyglet.graphics.Group(i))
 
     # load required assets
     assets = SimAssets()
@@ -37,7 +38,7 @@ def run():
     # loads the main scene
     def load_main_scene():
         # create an instance of a robot
-        robot_1 = Robot(assets, x=300, y=700, batch=main_batch, group=groups[5])
+        robot_1 = Robot(assets, x=200, y=500, batch=main_batch, group=groups[5])
         robots.append(robot_1)
         sim_objects.append(robot_1)
         #window.push_handlers(robot_1)
